@@ -33,9 +33,12 @@ st.title("Movie Review Sentiment Analysis")
 st.write("Enter a review on a movie to predict its sentiment (positive / negative)")
 user_inp = st.text_area("Movie Review")
 if st.button("Classify"):
-    sentiment, prob = predict_sentiment(user_inp)
-    if sentiment and prob:
-        st.write(f"Sentiment: {sentiment}")
-        st.write(f"Sentiment score (0=negative to 1=positive) : {prob}")
+    try:
+        sentiment, prob = predict_sentiment(user_inp)
+        if sentiment and prob:
+            st.write(f"Sentiment: {sentiment}")
+            st.write(f"Sentiment score (0=negative to 1=positive) : {prob}")
+    except:
+        st.write("Model couldn't find a sentiment...Try changing the words to ONLY english!! ")
 else:
     st.write("")
